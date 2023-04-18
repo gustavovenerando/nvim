@@ -1,5 +1,6 @@
-vim.g.mapleader = " "
-vim.keymap.set("n", "<leader>e", vim.cmd.Ex)
+vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
+
+vim.keymap.set("n", "<leader>oc", vim.cmd.Ex)
 
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
 vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
@@ -18,8 +19,6 @@ vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = "Open diagn
 vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = "Go to previous diagnostic message" })
 vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = "Go to next diagnostic message" })
 
-vim.keymap.set({ 'n', 'v' }, '<leader>', '<Nop>', { silent = true })
-
 -- Better window navigation
 vim.keymap.set("n", "<C-l>", "<C-w>l")
 vim.keymap.set("n", "<C-h>", "<C-w>h")
@@ -30,3 +29,5 @@ vim.keymap.set("n", "<C-k>", "<C-w>k")
 vim.keymap.set("n", "<A-l>", ":bnext<CR>")
 vim.keymap.set("n", "<A-h>", ":bprevious<CR>")
 
+-- Nvimtree
+vim.keymap.set("n", "<leader>e", ":NvimTreeToggle<cr>")
