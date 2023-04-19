@@ -1,2 +1,2 @@
-require("gustavohv.remap")
 require("gustavohv.set")
+require("gustavohv.remap")

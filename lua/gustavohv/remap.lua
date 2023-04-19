@@ -11,7 +11,7 @@ vim.keymap.set("n", "<C-u>", "<C-u>zz")
 vim.keymap.set("n", "n", "nzzzv")
 vim.keymap.set("n", "N", "Nzzzv")
 
-vim.keymap.set("n", "<leader>o", "o<C-c>")
+vim.keymap.set("n", "<leader>l", "o<C-c>")
 
 vim.keymap.set("x", "<leader>p", "\"_dP")
 
@@ -30,4 +30,11 @@ vim.keymap.set("n", "<A-l>", ":bnext<CR>")
 vim.keymap.set("n", "<A-h>", ":bprevious<CR>")
 
 -- Nvimtree
-vim.keymap.set("n", "<leader>e", ":NvimTreeToggle<cr>")
+--vim.keymap.set("n", "<leader>e", ":NvimTreeToggle<cr>")
+
+-- NeoTree
+vim.keymap.set("n", "<leader>e", ":NeoTreeShowToggle<cr>")
+
+
+
+
