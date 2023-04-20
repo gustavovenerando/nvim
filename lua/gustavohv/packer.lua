@@ -43,6 +43,7 @@ return require('packer').startup(function(use)
             {'L3MON4D3/LuaSnip'},     -- Required
         }
     }
+
     use {
         "nvim-neo-tree/neo-tree.nvim",
         branch = "v2.x",
@@ -53,4 +54,7 @@ return require('packer').startup(function(use)
         }
     }
 
+    use('numToStr/Comment.nvim')
+
+    use('lewis6991/gitsigns.nvim')
 end)
