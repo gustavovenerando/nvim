@@ -19,6 +19,10 @@ vim.opt.incsearch = true
 
 vim.opt.updatetime = 50
 
+vim.opt.scrolloff = 8
+
+vim.opt.wrap = false
+
 -- Sync clipboard between OS and Neovim
 vim.o.clipboard = "unnamedplus"
 
