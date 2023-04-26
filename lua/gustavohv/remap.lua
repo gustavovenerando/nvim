@@ -32,8 +32,8 @@ vim.keymap.set("n", "<C-j>", "<C-w>j")
 vim.keymap.set("n", "<C-k>", "<C-w>k")
 
 -- Create new windows
-vim.keymap.set("n", "<leader>wl", "<C-w>v")
-vim.keymap.set("n", "<leader>wj", "<C-w>s")
+vim.keymap.set("n", "<leader>nw", "<C-w>v<C-w>l")
+vim.keymap.set("n", "<leader>uw", "<C-w>s<C-w>j")
 
 -- Buffer navigation
 vim.keymap.set("n", "<A-l>", ":bnext<CR>")
