@@ -43,3 +43,9 @@ end)
 require('lspconfig').lua_ls.setup(lsp.nvim_lua_ls())
 
 lsp.setup()
+
+-- Override some diagnostics configs (solving update diagnostic issue)
+vim.diagnostic.config({
+    virtual_text = true,
+    update_in_insert = true
+})
