@@ -35,13 +35,33 @@ vim.keymap.set("n", "<C-k>", "<C-w>k")
 vim.keymap.set("n", "<leader>nw", "<C-w>v<C-w>l")
 vim.keymap.set("n", "<leader>uw", "<C-w>s<C-w>j")
 
--- Buffer navigation
+-- Buffer navigatiof
 vim.keymap.set("n", "<A-l>", ":bnext<CR>")
 vim.keymap.set("n", "<A-h>", ":bprevious<CR>")
 
---Delete current buffer
+--Delete current buffer and go to last open buffer
 vim.keymap.set("n", "<leader>q", ":<C-U>bprevious <bar> bdelete #<CR>")
 
 -- NeoTree
 vim.keymap.set("n", "<leader>e", ":NeoTreeShowToggle<cr>")
 
+-- After yank several lines cursor doesn't change position
+vim.keymap.set("v", "y", "ygv<Esc>")
+
+-- Expression mapping for i that will indent properly on empty lines
+vim.keymap.set("n", "i", function()
+    if #vim.fn.getline(".") == 0 then
+        return [["_cc]]
+    else
+        return "i"
+    end
+end, { expr = true })
+
+-- Expression mapping for dd that doesn't yank an empty line into your default register
+vim.keymap.set("n", "dd", function()
+    if vim.api.nvim_get_current_line():match("^%s*$") then
+        return '"_dd'
+    else
+        return "dd"
+    end
+end, { expr = true })

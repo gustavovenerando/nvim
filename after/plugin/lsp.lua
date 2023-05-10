@@ -49,3 +49,16 @@ vim.diagnostic.config({
     virtual_text = true,
     update_in_insert = true
 })
+
+-- Remap to Toggle Diagnostics on current buffer
+local diagnostics_active = true
+local toggle_diagnostics = function()
+    diagnostics_active = not diagnostics_active
+    if diagnostics_active then
+        vim.diagnostic.show(nil, 0)
+    else
+        vim.diagnostic.hide(nil, 0)
+    end
+end
+
+vim.keymap.set('n', '<leader>dt', toggle_diagnostics, { desc = '[D]iagnostics [T]oggle'})
