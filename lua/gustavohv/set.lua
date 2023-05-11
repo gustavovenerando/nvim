@@ -28,3 +28,6 @@ vim.opt.wrap = false
 -- Sync clipboard between OS and Neovim
 vim.o.clipboard = "unnamedplus"
 
+-- Enabling cursorline
+vim.o.cursorline = true
+
