@@ -68,3 +68,6 @@ end, { expr = true })
 
 -- Auto-formating
 vim.keymap.set('v', '<A-=>', vim.lsp.buf.format)
+
+-- Cltr + c that triggers InsertLeave autocommand event
+vim.keymap.set('i', '<C-c>', '<Esc>')
