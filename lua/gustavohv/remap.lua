@@ -67,4 +67,4 @@ vim.keymap.set("n", "dd", function()
 end, { expr = true })
 
 -- Auto-formating
-vim.keymap.set('n', '<leader>=', vim.lsp.buf.format)
+vim.keymap.set('v', '<A-=>', vim.lsp.buf.format)
