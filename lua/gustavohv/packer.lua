@@ -64,4 +64,11 @@ return require('packer').startup(function(use)
     }
 
     use("akinsho/toggleterm.nvim")
+
+    use {
+        'gennaro-tedesco/nvim-possession',
+        requires = {
+            { 'ibhagwan/fzf-lua' },
+        }
+    }
 end)
