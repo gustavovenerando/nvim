@@ -5,10 +5,10 @@ require("nvim-possession").setup({
         sessions_icon = ...,
     },
 
-    autoload = false, -- whether to autoload sessions in the cwd at startup
+    autoload = true, -- whether to autoload sessions in the cwd at startup
     autosave = true, -- whether to autosave loaded sessions before quitting
     autoswitch = {
-        enable = false, -- whether to enable autoswitch
+        enable = true, -- whether to enable autoswitch
         exclude_ft = {}, -- list of filetypes to exclude from autoswitch
     },
 
