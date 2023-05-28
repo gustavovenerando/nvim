@@ -36,8 +36,8 @@ vim.keymap.set("n", "<leader>nw", "<C-w>v<C-w>l")
 vim.keymap.set("n", "<leader>uw", "<C-w>s<C-w>j")
 
 -- Buffer navigatiof
-vim.keymap.set("n", "<A-l>", ":bnext<CR>")
-vim.keymap.set("n", "<A-h>", ":bprevious<CR>")
+-- vim.keymap.set("n", "<A-l>", ":bnext<CR>")
+-- vim.keymap.set("n", "<A-h>", ":bprevious<CR>")
 
 --Delete current buffer and go to last open buffer
 vim.keymap.set("n", "<leader>q", ":<C-U>bprevious <bar> bdelete #<CR>")
