@@ -68,7 +68,10 @@ return require('packer').startup(function(use)
     use {
         'gennaro-tedesco/nvim-possession',
         requires = {
-            { 'ibhagwan/fzf-lua' },
+            {
+                'ibhagwan/fzf-lua',
+                { 'junegunn/fzf', run = ":call fzf#install()" }
+            },
         }
     }
 
