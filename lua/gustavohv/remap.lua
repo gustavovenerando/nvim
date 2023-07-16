@@ -43,7 +43,7 @@ vim.keymap.set("n", "<leader>uw", "<C-w>s<C-w>j")
 vim.keymap.set("n", "<leader>q", ":<C-U>bprevious <bar> bdelete #<CR>")
 
 -- NeoTree
-vim.keymap.set("n", "<leader>e", ":NeoTreeShowToggle<cr>")
+vim.keymap.set("n", "<leader>e", ":Neotree toggle <CR>")
 
 -- After yank several lines cursor doesn't change position
 vim.keymap.set("v", "y", "ygv<Esc>")
