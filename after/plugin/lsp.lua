@@ -41,8 +41,21 @@ end)
 
 -- (Optional) Configure lua language server for neovim
 require('lspconfig').lua_ls.setup(lsp.nvim_lua_ls())
-
 lsp.setup()
+
+-- v.3.x
+require('mason').setup({})
+require('mason-lspconfig').setup({
+  ensure_installed = {'tsserver', 'rust_analyzer'},
+  handlers = {
+    lsp.default_setup,
+    lua_ls = function()
+      require('lspconfig').lua_ls.setup(lsp.nvim_lua_ls())
+    end,
+  }
+})
+
+require('lsp-zero').extend_cmp()
 
 -- Override some diagnostics configs (solving update diagnostic issue)
 vim.diagnostic.config({
