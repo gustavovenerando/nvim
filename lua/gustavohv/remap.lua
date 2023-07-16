@@ -1,6 +1,6 @@
 vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
 
-vim.keymap.set("n", "<leader>oc", vim.cmd.Ex)
+-- vim.keymap.set("n", "<leader>oc", vim.cmd.Ex)
 
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
 vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
@@ -71,3 +71,6 @@ vim.keymap.set('v', '<A-=>', vim.lsp.buf.format)
 
 -- Cltr + c that triggers InsertLeave autocommand event
 vim.keymap.set('i', '<C-c>', '<Esc>')
+
+-- Highlight a word with * without moving cursor
+vim.keymap.set('n', '*', 'mP*N`P')
