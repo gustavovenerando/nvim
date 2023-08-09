@@ -21,7 +21,7 @@ require('lualine').setup {
         lualine_a = { 'mode' },
         lualine_b = { 'branch', 'diff', 'diagnostics' },
         lualine_c = {
-            { 'filename' },
+            { 'filename', path = 1, file_status = true },
             {
                 require("nvim-possession").status,
                 cond = function()
