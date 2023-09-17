@@ -85,4 +85,12 @@ return require('packer').startup(function(use)
         'ThePrimeagen/harpoon',
         requires = { 'nvim-lua/plenary.nvim' }
     }
+
+    use({
+        "https://git.sr.ht/~whynothugo/lsp_lines.nvim",
+        config = function()
+            require("lsp_lines").setup()
+        end,
+    })
+
 end)

@@ -74,3 +74,14 @@ vim.keymap.set('i', '<C-c>', '<Esc>')
 
 -- Highlight a word with * without moving cursor
 vim.keymap.set('n', '*', 'mP*N`P')
+
+-- Remap for lsp_lines plugin
+vim.keymap.set(
+    "",
+    "<leader>do",
+    require("lsp_lines").toggle,
+    { desc = "Toggle lsp_lines" }
+)
+
+-- lsp_lines off by default
+vim.diagnostic.config({ virtual_lines = false })
