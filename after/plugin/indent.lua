@@ -1,6 +1,5 @@
 vim.opt.termguicolors = true
-vim.cmd [[highlight IndentBlanklineIndent1 guifg=#aba9a9 gui=nocombine]]
-
+vim.cmd [[highlight IndentBlanklineIndent1 guifg=#8285ab gui=nocombine]]
 
 require("indent_blankline").setup {
     show_trailing_blankline_indent = false,
