@@ -93,4 +93,12 @@ return require('packer').startup(function(use)
         end,
     })
 
+    use {
+        'goolord/alpha-nvim',
+        requires = {'BlakeJC94/alpha-nvim-fortune'},
+        config = function()
+            require 'alpha'.setup(require 'alpha.themes.dashboard'.config)
+        end
+    }
+
 end)
