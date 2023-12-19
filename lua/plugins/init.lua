@@ -26,6 +26,7 @@ return require('lazy').setup({
     {
         "catppuccin/nvim",
         name = "catppuccin",
+        priority = 1000,
         config = function()
             require("plugins.config.colors")
         end,
