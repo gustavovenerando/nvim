@@ -32,7 +32,6 @@ return require('lazy').setup({
         end,
     },
 
-    'xiyaowong/transparent.nvim',
     { "nvim-tree/nvim-web-devicons", event = "VeryLazy" },
 
     {
