@@ -178,4 +178,13 @@ return require('lazy').setup({
             require("plugins.config.yanky")
         end,
     },
+
+    {
+        "tpope/vim-fugitive",
+        config = function()
+            require("plugins.config.fugitive")
+        end,
+    },
+
+    "mbbill/undotree",
 })

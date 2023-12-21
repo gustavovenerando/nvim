@@ -45,4 +45,4 @@ require('telescope').setup({
 })
 
 -- Yanky history with telescope
-vim.keymap.set("n", "<leader>ka", ":Telescope yank_history <CR>")
+vim.keymap.set("n", "<leader>ks", ":Telescope yank_history <CR>")

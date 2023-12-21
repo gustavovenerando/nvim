@@ -85,3 +85,6 @@ vim.keymap.set(
 
 -- lsp_lines off by default
 vim.diagnostic.config({ virtual_lines = false })
+
+-- undotree
+vim.keymap.set("n", "<leader>u", vim.cmd.UndotreeToggle)
