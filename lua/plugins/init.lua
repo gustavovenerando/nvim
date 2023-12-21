@@ -170,6 +170,12 @@ return require('lazy').setup({
         config = function()
             require("plugins.config.alpha")
         end,
-    }
+    },
 
+    {
+        "gbprod/yanky.nvim",
+        config = function()
+            require("plugins.config.yanky")
+        end,
+    },
 })
