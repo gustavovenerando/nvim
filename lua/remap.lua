@@ -87,4 +87,9 @@ vim.keymap.set(
 vim.diagnostic.config({ virtual_lines = false })
 
 -- undotree
-vim.keymap.set("n", "<leader>u", vim.cmd.UndotreeToggle)
+vim.keymap.set("n", "<leader>u", vim.cmd.UndotreeToggle, { desc = "UndotreeToggle" })
+
+-- Diffview
+vim.keymap.set("n", "<leader>vo", "<cmd>DiffviewOpen<CR>", { desc = "Diff[v]iew [O]pen" })
+vim.keymap.set("n", "<leader>vc", "<cmd>DiffviewClose<CR>", { desc = "Diff[v]iew [C]lose" })
+vim.keymap.set("n", "<leader>vh", "<cmd>DiffviewFileHistory<CR>", { desc = "Diff[v]iew File [H]istory"})

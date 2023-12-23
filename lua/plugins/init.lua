@@ -17,7 +17,7 @@ vim.g.maplocalleader = " "
 return require('lazy').setup({
     {
         'nvim-telescope/telescope.nvim',
-        dependencies = { {'nvim-lua/plenary.nvim'} },
+        dependencies = { { 'nvim-lua/plenary.nvim' } },
         config = function()
             require("plugins.config.telescope")
         end,
@@ -45,7 +45,7 @@ return require('lazy').setup({
 
     {
         'lukas-reineke/indent-blankline.nvim',
-        version="2.20.8",
+        version = "2.20.8",
         config = function()
             require("plugins.config.indent")
         end,
@@ -73,12 +73,12 @@ return require('lazy').setup({
         event = { 'BufRead', 'BufNewFile' },
         dependencies = {
             -- LSP Support
-            {'neovim/nvim-lspconfig'},             -- Required
+            { 'neovim/nvim-lspconfig' }, -- Required
 
             -- Autocompletion
-            {'hrsh7th/nvim-cmp'},     -- Required
-            {'hrsh7th/cmp-nvim-lsp'}, -- Required
-            {'L3MON4D3/LuaSnip'},     -- Required
+            { 'hrsh7th/nvim-cmp' },   -- Required
+            { 'hrsh7th/cmp-nvim-lsp' }, -- Required
+            { 'L3MON4D3/LuaSnip' },   -- Required
         },
         config = function()
             require("plugins.config.lsp")
@@ -104,14 +104,14 @@ return require('lazy').setup({
 
     {
         'numToStr/Comment.nvim',
-        config = function ()
+        config = function()
             require("plugins.config.comment");
         end,
     },
 
     {
         'lewis6991/gitsigns.nvim',
-        config = function ()
+        config = function()
             require("plugins.config.gitsigns");
         end,
     },
@@ -123,20 +123,21 @@ return require('lazy').setup({
 
     {
         "akinsho/toggleterm.nvim",
-        config = function ()
+        config = function()
             require("plugins.config.toggleterm");
         end,
     },
 
     {
         'gennaro-tedesco/nvim-possession',
+        event='VeryLazy',
         dependencies = {
             {
                 'ibhagwan/fzf-lua',
                 { 'junegunn/fzf', build = ":call fzf#install()" }
             },
         },
-        config = function ()
+        config = function()
             require("plugins.config.session");
         end,
     },
@@ -144,7 +145,7 @@ return require('lazy').setup({
     {
         'nvim-lualine/lualine.nvim',
         dependencies = { 'nvim-tree/nvim-web-devicons', lazy = true },
-        config = function ()
+        config = function()
             require("plugins.config.lualine");
         end,
     },
@@ -152,7 +153,7 @@ return require('lazy').setup({
     {
         'ThePrimeagen/harpoon',
         dependencies = { 'nvim-lua/plenary.nvim' },
-        config = function ()
+        config = function()
             require("plugins.config.harpoon");
         end,
     },
@@ -166,7 +167,7 @@ return require('lazy').setup({
 
     {
         'goolord/alpha-nvim',
-        dependencies = {'BlakeJC94/alpha-nvim-fortune'},
+        dependencies = { 'BlakeJC94/alpha-nvim-fortune' },
         config = function()
             require("plugins.config.alpha")
         end,
@@ -187,14 +188,45 @@ return require('lazy').setup({
     },
 
     "mbbill/undotree",
+    "sindrets/diffview.nvim",
 
     {
         "aaronhallaert/advanced-git-search.nvim",
         dependencies = {
             "nvim-telescope/telescope.nvim",
-            -- to show diff splits and open commits in browser
-            "tpope/vim-fugitive",
-            -- to open commits in browser with fugitive
+            "sindrets/diffview.nvim",
         },
+        config = function()
+			-- optional: setup telescope before loading the extension
+			require("telescope").setup({
+				-- move this to the place where you call the telescope setup function
+				extensions = {
+					advanced_git_search = {
+						-- fugitive or diffview
+						diff_plugin = "diffview",
+						-- customize git in previewer
+						-- e.g. flags such as { "--no-pager" }, or { "-c", "delta.side-by-side=false" }
+						git_flags = {},
+						-- customize git diff in previewer
+						-- e.g. flags such as { "--raw" }
+						git_diff_flags = {},
+						-- Show builtin git pickers when executing "show_custom_functions" or :AdvancedGitSearch
+						show_builtin_git_pickers = false,
+						entry_default_author_or_date = "author", -- one of "author" or "date"
+					},
+				},
+			})
+
+            require("telescope").load_extension("advanced_git_search")
+		end,
     },
+
+    {
+        "folke/which-key.nvim",
+        event = "VeryLazy",
+        init = function()
+            vim.o.timeout = true
+            vim.o.timeoutlen = 300
+        end,
+    }
 })

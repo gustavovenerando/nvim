@@ -22,7 +22,7 @@ vim.keymap.set('n', '<leader>sh', telescope_builtin.help_tags, { desc = '[S]earc
 vim.keymap.set('n', '<leader>sw', telescope_builtin.grep_string, { desc = '[S]earch current [W]ord' })
 vim.keymap.set('n', '<leader>sg', telescope_builtin.live_grep, { desc = '[S]earch by [G]rep' })
 vim.keymap.set('n', '<leader>sd', telescope_builtin.diagnostics, { desc = '[S]earch [D]iagnostics' })
-vim.keymap.set('n', '<leader>sf', telescope_builtin.git_files, { desc = '[ ] Search Git Files' });
+vim.keymap.set('n', '<leader>sf', telescope_builtin.git_files, { desc = '[S]earch Git [F]iles' });
 
 -- Change buffer layout and adding map to allow delete buffer with telescope window open
 local actions = require("telescope.actions")
@@ -50,7 +50,7 @@ require('telescope').setup({
 })
 
 -- Yanky history with telescope
-vim.keymap.set("n", "<leader>ks", require("telescope").extensions.yank_history.yank_history)
+vim.keymap.set("n", "<leader>ks", require("telescope").extensions.yank_history.yank_history, {desc = 'Yan[k]y [S]earch History'})
 -- vim.keymap.set("n", "<leader>ks", function ()
 --     require("telescope").extensions.yank_history.yank_history (require('telescope.themes').get_dropdown {
 --     winblend = 10,
@@ -64,8 +64,8 @@ vim.keymap.set("n", "<leader>ks", require("telescope").extensions.yank_history.y
 -- )
 
 -- Last search
-vim.keymap.set("n", "<leader>ls", telescope_builtin.resume)
+vim.keymap.set("n", "<leader>ls", telescope_builtin.resume, {desc = '[L]ast Telescope [S]earch'})
 
 -- advanced_git_search
-vim.keymap.set("n", "<leader>dc", require('telescope').extensions.advanced_git_search.diff_commit_file)
-vim.keymap.set("n", "<leader>db", require('telescope').extensions.advanced_git_search.diff_branch_file)
+vim.keymap.set("n", "<leader>dc", require('telescope').extensions.advanced_git_search.diff_commit_file,{ desc = '[D]iff File [C]ommit' } )
+vim.keymap.set("n", "<leader>db", require('telescope').extensions.advanced_git_search.diff_branch_file, { desc = '[D]iff File [B]ranch'})
