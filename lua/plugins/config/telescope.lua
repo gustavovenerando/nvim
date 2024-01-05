@@ -49,6 +49,31 @@ require('telescope').setup({
                 preview_width = 0.5,
             }
         },
+        git_files = {
+            layout_config = { 
+                preview_width = 0.5,
+            }
+        },
+        grep_string = {
+            layout_config = { 
+                preview_width = 0.5,
+            }
+        },
+        live_grep = {
+            layout_config = { 
+                preview_width = 0.5,
+            }
+        },
+        help_tags= {
+            layout_config = { 
+                preview_width = 0.5,
+            }
+        },
+        diagnostics= {
+            layout_config = { 
+                preview_width = 0.5,
+            }
+        },
     },
 })
 
