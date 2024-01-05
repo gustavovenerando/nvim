@@ -44,9 +44,12 @@ require('telescope').setup({
             }
         },
         find_files = {
-			find_command = { "rg", "--files", "--hidden", "--glob", "!**/.git/*" },
-		},
-    }
+            find_command = { "rg", "--files", "--hidden", "--glob", "!**/.git/*" },
+            layout_config = { 
+                preview_width = 0.5,
+            }
+        },
+    },
 })
 
 -- Yanky history with telescope
