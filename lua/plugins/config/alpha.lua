@@ -658,6 +658,7 @@ local fortune_list = {
     {"You either suffer the pain of discipline or you suffer the pain of regret."},
     {"Be who you are and say what you mean. Those who mind don't matter and those who matter don't mind.", "", "- Dr Seuss"},
     {"Sometimes you never realize the value of a moment until it becomes a memory.", "", "- Dr Seuss"},
+    {"Don't cry because it's over. Smile because it happened.", "", "- Dr Seuss"},
     {"You miss 100% of the shots you don't take.", "", "- Wayne Gretzky"},
     {"Be as you wish to seem.", "", "- Socrates"},
     {'Do, or do not. There is no “try"', "", "- Yoda"},
