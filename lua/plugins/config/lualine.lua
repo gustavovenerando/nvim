@@ -22,12 +22,6 @@ require('lualine').setup {
         lualine_b = { 'branch', 'diff', 'diagnostics' },
         lualine_c = {
             { 'filename', path = 1, file_status = true },
-            {
-                require("nvim-possession").status,
-                cond = function()
-                    return require("nvim-possession").status() ~= nil
-                end,
-            },
         },
         lualine_x = {
             'encoding',

@@ -129,20 +129,6 @@ return require('lazy').setup({
     },
 
     {
-        'gennaro-tedesco/nvim-possession',
-        event='VeryLazy',
-        dependencies = {
-            {
-                'ibhagwan/fzf-lua',
-                { 'junegunn/fzf', build = ":call fzf#install()" }
-            },
-        },
-        config = function()
-            require("plugins.config.session");
-        end,
-    },
-
-    {
         'nvim-lualine/lualine.nvim',
         dependencies = { 'nvim-tree/nvim-web-devicons', lazy = true },
         config = function()
