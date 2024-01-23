@@ -17,9 +17,10 @@ vim.keymap.set("n", "<leader>l", "o<C-c>")
 vim.keymap.set("x", "<leader>p", "\"_dP")
 
 --Diagnostics
-vim.keymap.set('n', '<leader>dl', vim.diagnostic.setloclist, { desc = "Open diagnostics list" })
+vim.keymap.set('n', '<leader>dl', vim.diagnostic.setloclist, { desc = "Open [D]iagnostics [L]ist" })
 vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = "Go to previous diagnostic message" })
 vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = "Go to next diagnostic message" })
+vim.keymap.set('n', '<leader>df', vim.diagnostic.open_float, { desc = "Open [D]iagnostics [F]loat" })
 
 -- Terminal remaps
 vim.keymap.set("n", "<leader>t", ":terminal<cr>")
