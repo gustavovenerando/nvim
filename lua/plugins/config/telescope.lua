@@ -102,6 +102,25 @@ require('telescope').setup({
 -- end
 -- )
 
+-- Live grep in visual selection
+function vim.getVisualSelection()
+	vim.cmd('noau normal! "vy"')
+	local text = vim.fn.getreg('v')
+	vim.fn.setreg('v', {})
+
+	text = string.gsub(text, "\n", "")
+	if #text > 0 then
+		return text
+	else
+		return ''
+	end
+end
+
+vim.keymap.set('v', '<space>sw', function()
+	local text = vim.getVisualSelection()
+	telescope_builtin.live_grep({ default_text = text })
+end, { noremap = true, silent = true })
+
 -- Last Telescope Command
 vim.keymap.set("n", "<leader>ls", telescope_builtin.resume, {desc = '[L]ast Telescope [S]earch'})
 
