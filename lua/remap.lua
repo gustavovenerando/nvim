@@ -94,3 +94,6 @@ vim.keymap.set("n", "<leader>u", vim.cmd.UndotreeToggle, { desc = "UndotreeToggl
 vim.keymap.set("n", "<leader>vo", "<cmd>DiffviewOpen<CR>", { desc = "Diff[v]iew [O]pen" })
 vim.keymap.set("n", "<leader>vc", "<cmd>DiffviewClose<CR>", { desc = "Diff[v]iew [C]lose" })
 vim.keymap.set("n", "<leader>vh", "<cmd>DiffviewFileHistory<CR>", { desc = "Diff[v]iew File [H]istory"})
+
+--inc rename
+vim.keymap.set("n", "<leader>rn", ":IncRename ")

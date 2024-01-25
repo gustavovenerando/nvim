@@ -215,5 +215,12 @@ return require('lazy').setup({
             vim.o.timeoutlen = 300
         end,
         opts = {}
-    }
+    },
+
+    {
+        "smjonas/inc-rename.nvim",
+        config = function()
+            require("inc_rename").setup()
+        end,
+    },
 })
