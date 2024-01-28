@@ -33,15 +33,12 @@ vim.keymap.set("n", "<C-j>", "<C-w>j")
 vim.keymap.set("n", "<C-k>", "<C-w>k")
 
 -- Create new windows
-vim.keymap.set("n", "<leader>nw", "<C-w>v<C-w>l")
-vim.keymap.set("n", "<leader>uw", "<C-w>s<C-w>j")
+-- vim.keymap.set("n", "<leader>nw", "<C-w>v<C-w>l")
+-- vim.keymap.set("n", "<leader>uw", "<C-w>s<C-w>j")
 
--- Buffer navigatiof
--- vim.keymap.set("n", "<A-l>", ":bnext<CR>")
--- vim.keymap.set("n", "<A-h>", ":bprevious<CR>")
-
---Delete current buffer and go to last open buffer
-vim.keymap.set("n", "<leader>q", ":<C-U>bprevious <bar> bdelete #<CR>")
+-- History Buffer navigation
+vim.keymap.set("n", "<leader>p", "<cmd>bprevious<cr>")
+vim.keymap.set("n", "<leader>n", "<cmd>bnext<cr>")
 
 -- NeoTree
 vim.keymap.set("n", "<leader>e", ":Neotree toggle <CR>")
@@ -86,9 +83,6 @@ vim.keymap.set(
 
 -- lsp_lines off by default
 vim.diagnostic.config({ virtual_lines = false })
-
--- undotree
-vim.keymap.set("n", "<leader>u", vim.cmd.UndotreeToggle, { desc = "UndotreeToggle" })
 
 -- Diffview
 vim.keymap.set("n", "<leader>vo", "<cmd>DiffviewOpen<CR>", { desc = "Diff[v]iew [O]pen" })

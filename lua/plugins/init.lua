@@ -173,7 +173,6 @@ return require('lazy').setup({
         end,
     },
 
-    "mbbill/undotree",
     "sindrets/diffview.nvim",
 
     {
@@ -183,28 +182,28 @@ return require('lazy').setup({
             "sindrets/diffview.nvim",
         },
         config = function()
-			-- optional: setup telescope before loading the extension
-			require("telescope").setup({
-				-- move this to the place where you call the telescope setup function
-				extensions = {
-					advanced_git_search = {
-						-- fugitive or diffview
-						diff_plugin = "diffview",
-						-- customize git in previewer
-						-- e.g. flags such as { "--no-pager" }, or { "-c", "delta.side-by-side=false" }
-						git_flags = {},
-						-- customize git diff in previewer
-						-- e.g. flags such as { "--raw" }
-						git_diff_flags = {},
-						-- Show builtin git pickers when executing "show_custom_functions" or :AdvancedGitSearch
-						show_builtin_git_pickers = false,
-						entry_default_author_or_date = "author", -- one of "author" or "date"
-					},
-				},
-			})
+            -- optional: setup telescope before loading the extension
+            require("telescope").setup({
+                -- move this to the place where you call the telescope setup function
+                extensions = {
+                    advanced_git_search = {
+                        -- fugitive or diffview
+                        diff_plugin = "diffview",
+                        -- customize git in previewer
+                        -- e.g. flags such as { "--no-pager" }, or { "-c", "delta.side-by-side=false" }
+                        git_flags = {},
+                        -- customize git diff in previewer
+                        -- e.g. flags such as { "--raw" }
+                    git_diff_flags = {},
+                        -- Show builtin git pickers when executing "show_custom_functions" or :AdvancedGitSearch
+                        show_builtin_git_pickers = false,
+                        entry_default_author_or_date = "author", -- one of "author" or "date"
+                    },
+                },
+            })
 
             require("telescope").load_extension("advanced_git_search")
-		end,
+        end,
     },
 
     {
@@ -221,6 +220,39 @@ return require('lazy').setup({
         "smjonas/inc-rename.nvim",
         config = function()
             require("inc_rename").setup()
+        end,
+    },
+
+    {
+        "debugloop/telescope-undo.nvim",
+        dependencies = { -- note how they're inverted to above example
+            {
+                "nvim-telescope/telescope.nvim",
+                dependencies = { "nvim-lua/plenary.nvim" },
+            },
+        },
+        keys = {
+            { -- lazy style key map
+                "<leader>u",
+                "<cmd>Telescope undo<cr>",
+                desc = "[U]ndo History",
+            },
+        },
+        opts = {
+            -- don't use `defaults = { }` here, do this in the main telescope spec
+            extensions = {
+                undo = {
+                    -- telescope-undo.nvim config, see below
+                },
+                -- no other extensions here, they can have their own spec too
+            },
+        },
+        config = function(_, opts)
+            -- Calling telescope's setup from multiple specs does not hurt, it will happily merge the
+            -- configs for us. We won't use data, as everything is in it's own namespace (telescope
+            -- defaults, as well as each extension).
+            require("telescope").setup(opts)
+            require("telescope").load_extension("undo")
         end,
     },
 })
