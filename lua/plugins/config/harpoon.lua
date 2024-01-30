@@ -10,6 +10,7 @@ local ui = require("harpoon.ui")
 local term = require("harpoon.term")
 
 vim.keymap.set("n", "<leader>a", mark.add_file)
+vim.keymap.set("n", "<tab>", ui.toggle_quick_menu)
 
 vim.keymap.set("n", "<leader>j1", function() term.gotoTerminal(1) end)
 vim.keymap.set("n", "<leader>j2", function() term.gotoTerminal(2) end)

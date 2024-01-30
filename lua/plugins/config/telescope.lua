@@ -36,6 +36,9 @@ require('telescope').setup({
                 ["<C-n>"] = actions.cycle_history_next,
                 ["<C-p>"] = actions.cycle_history_prev,
             }
+        },
+        layout_config = {
+            preview_width = 0.55,
         }
     },
     pickers = {
@@ -56,34 +59,6 @@ require('telescope').setup({
         },
         find_files = {
             find_command = { "rg", "--files", "--hidden", "--glob", "!**/.git/*" },
-            layout_config = {
-                preview_width = 0.55,
-            }
-        },
-        git_files = {
-            layout_config = {
-                preview_width = 0.55,
-            }
-        },
-        grep_string = {
-            layout_config = {
-                preview_width = 0.55,
-            }
-        },
-        live_grep = {
-            layout_config = {
-                preview_width = 0.55,
-            }
-        },
-        help_tags= {
-            layout_config = {
-                preview_width = 0.55,
-            }
-        },
-        diagnostics= {
-            layout_config = {
-                preview_width = 0.55,
-            }
         },
     },
 })
