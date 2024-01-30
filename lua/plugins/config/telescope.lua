@@ -1,5 +1,6 @@
 require("telescope").load_extension("advanced_git_search")
 require("telescope").load_extension("yank_history")
+require("telescope").load_extension("undo")
 
 local telescope_builtin = require('telescope.builtin');
 
@@ -61,6 +62,18 @@ require('telescope').setup({
             find_command = { "rg", "--files", "--hidden", "--glob", "!**/.git/*" },
         },
     },
+    extensions = {
+        undo = {
+            mappings = {
+                i = {
+                    ["<cr>"] = require("telescope-undo.actions").restore,
+                    ["<C-d>"] = require("telescope-undo.actions").yank_deletions,
+                    ["<C-a>"] = require("telescope-undo.actions").yank_additions,
+                },
+            },
+        },
+    },
+
 })
 
 -- Yanky history with telescope
@@ -105,3 +118,6 @@ vim.keymap.set("n", "<leader>ql", telescope_builtin.quickfixhistory, {desc = '[Q
 -- advanced_git_search
 vim.keymap.set("n", "<leader>dc", require('telescope').extensions.advanced_git_search.diff_commit_file,{ desc = '[D]iff File [C]ommit' } )
 vim.keymap.set("n", "<leader>db", require('telescope').extensions.advanced_git_search.diff_branch_file, { desc = '[D]iff File [B]ranch'})
+
+-- undo
+vim.keymap.set("n", "<leader>u", require('telescope').extensions.undo.undo, { desc = "[U]ndo History"})
