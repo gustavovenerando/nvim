@@ -91,3 +91,16 @@ vim.keymap.set("n", "<leader>vh", "<cmd>DiffviewFileHistory<CR>", { desc = "Diff
 
 --inc rename
 vim.keymap.set("n", "<leader>rn", ":IncRename ")
+
+local aloha = vim.api.nvim_create_augroup("aloha", {clear = true})
+vim.api.nvim_create_autocmd({"CursorHold"}, {
+    pattern = "*",
+    group = aloha,
+    command = "autocmd! CursorHold"
+})
+vim.api.nvim_create_autocmd({"CursorHold"}, {
+    pattern = "*",
+    group = aloha,
+    command = "autocmd CursorHold * silent! checktime"
+})
+
