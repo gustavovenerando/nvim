@@ -27,6 +27,10 @@ vim.keymap.set('n', '<leader>sg', telescope_builtin.live_grep, { desc = '[S]earc
 vim.keymap.set('n', '<leader>sd', telescope_builtin.diagnostics, { desc = '[S]earch [D]iagnostics' })
 vim.keymap.set('n', '<leader>sf', telescope_builtin.git_files, { desc = '[S]earch Git [F]iles' });
 
+vim.keymap.set('n', '<leader>sn', function()
+        telescope_builtin.find_files { cwd = vim.fn.stdpath 'config' }
+      end, { desc = '[S]earch [N]eovim files' })
+
 -- Change buffer layout and adding map to allow delete buffer with telescope window open
 local actions = require("telescope.actions")
 require('telescope').setup({

@@ -17,6 +17,8 @@ vim.g.maplocalleader = " "
 return require('lazy').setup({
     {
         'nvim-telescope/telescope.nvim',
+        event = 'VimEnter',
+        branch = '0.1.x',
         dependencies = {
             'nvim-lua/plenary.nvim',
             'debugloop/telescope-undo.nvim'
@@ -56,8 +58,7 @@ return require('lazy').setup({
 
     {
         "hrsh7th/nvim-cmp",
-        -- event = 'InsertEnter',
-        event = 'VeryLazy',
+        event = 'InsertEnter',
         dependencies = {
             "hrsh7th/cmp-nvim-lsp",
             "hrsh7th/cmp-path",
@@ -70,6 +71,7 @@ return require('lazy').setup({
             require("plugins.config.cmp")
         end,
     },
+
     {
         'VonHeikemen/lsp-zero.nvim',
         branch = 'v3.x',
@@ -82,15 +84,15 @@ return require('lazy').setup({
             { 'hrsh7th/nvim-cmp' },   -- Required
             { 'hrsh7th/cmp-nvim-lsp' }, -- Required
             { 'L3MON4D3/LuaSnip' },   -- Required
+
+            -- Manage lsp from neovim
+            "williamboman/mason.nvim",
+            "williamboman/mason-lspconfig.nvim",
         },
         config = function()
             require("plugins.config.lsp")
         end,
-
     },
-
-    "williamboman/mason.nvim",
-    "williamboman/mason-lspconfig.nvim",
 
     {
         "nvim-neo-tree/neo-tree.nvim",
@@ -156,7 +158,6 @@ return require('lazy').setup({
 
     {
         'goolord/alpha-nvim',
-        dependencies = { 'BlakeJC94/alpha-nvim-fortune' },
         config = function()
             require("plugins.config.alpha")
         end,

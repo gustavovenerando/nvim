@@ -12,7 +12,7 @@ vim.keymap.set("n", "n", "nzzzv")
 vim.keymap.set("n", "N", "Nzzzv")
 
 -- New line while normal mode
-vim.keymap.set("n", "<leader>l", "o<C-c>")
+-- vim.keymap.set("n", "<leader>l", "o<C-c>")
 
 vim.keymap.set("x", "<leader>p", "\"_dP")
 
@@ -41,7 +41,7 @@ vim.keymap.set("n", "<leader>p", "<cmd>bprevious<cr>")
 vim.keymap.set("n", "<leader>n", "<cmd>bnext<cr>")
 
 -- NeoTree
-vim.keymap.set("n", "<leader>e", ":Neotree toggle <CR>")
+vim.keymap.set("n", "<leader>e", "<cmd>Neotree toggle<cr>")
 
 -- After yank several lines cursor doesn't change position
 vim.keymap.set("v", "y", "ygv<Esc>")
