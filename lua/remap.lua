@@ -37,8 +37,8 @@ vim.keymap.set("n", "<C-k>", "<C-w>k")
 -- vim.keymap.set("n", "<leader>uw", "<C-w>s<C-w>j")
 
 -- History Buffer navigation
-vim.keymap.set("n", "<leader>p", "<cmd>bprevious<cr>")
-vim.keymap.set("n", "<leader>n", "<cmd>bnext<cr>")
+-- vim.keymap.set("n", "<leader>p", "<cmd>bprevious<cr>")
+-- vim.keymap.set("n", "<leader>n", "<cmd>bnext<cr>")
 
 -- NeoTree
 vim.keymap.set("n", "<leader>e", "<cmd>Neotree toggle<cr>")
@@ -104,3 +104,9 @@ vim.api.nvim_create_autocmd({"CursorHold"}, {
     command = "autocmd CursorHold * silent! checktime"
 })
 
+-- Cellular Automation
+vim.keymap.set("n", "<leader>fjo", "<cmd>CellularAutomaton make_it_rain<cr>", { desc = "Make it Rain"})
+
+-- Buffer navigation
+vim.keymap.set("n", "[s", "<cmd>BufSurfBack<cr>", { desc = "[S]urf Back"})
+vim.keymap.set("n", "]s", "<cmd>BufSurfForward<cr>", { desc = "[S]urf Forward"})

@@ -227,4 +227,7 @@ return require('lazy').setup({
         end,
     },
 
+    'eandrju/cellular-automaton.nvim',
+    'windwp/nvim-ts-autotag',
+    'ton/vim-bufsurf',
 })
