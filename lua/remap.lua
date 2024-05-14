@@ -11,9 +11,6 @@ vim.keymap.set("n", "<C-u>", "<C-u>zz")
 vim.keymap.set("n", "n", "nzzzv")
 vim.keymap.set("n", "N", "Nzzzv")
 
--- New line while normal mode
--- vim.keymap.set("n", "<leader>l", "o<C-c>")
-
 vim.keymap.set("x", "<leader>p", "\"_dP")
 
 --Diagnostics
@@ -92,6 +89,7 @@ vim.keymap.set("n", "<leader>vh", "<cmd>DiffviewFileHistory<CR>", { desc = "Diff
 --inc rename
 vim.keymap.set("n", "<leader>rn", ":IncRename ")
 
+-- solving a bug
 local aloha = vim.api.nvim_create_augroup("aloha", {clear = true})
 vim.api.nvim_create_autocmd({"CursorHold"}, {
     pattern = "*",
