@@ -108,3 +108,17 @@ vim.keymap.set("n", "<leader>fjo", "<cmd>CellularAutomaton make_it_rain<cr>", { 
 -- Buffer navigation
 vim.keymap.set("n", "[s", "<cmd>BufSurfBack<cr>", { desc = "[S]urf Back"})
 vim.keymap.set("n", "]s", "<cmd>BufSurfForward<cr>", { desc = "[S]urf Forward"})
+
+
+-- Remap to Toggle Diagnostics on current buffer
+local diagnostics_active = true
+local toggle_diagnostics = function()
+    diagnostics_active = not diagnostics_active
+    if diagnostics_active then
+        vim.diagnostic.show(nil, 0)
+    else
+        vim.diagnostic.hide(nil, 0)
+    end
+end
+
+vim.keymap.set('n', '<leader>dt', toggle_diagnostics, { desc = '[D]iagnostics [T]oggle' })

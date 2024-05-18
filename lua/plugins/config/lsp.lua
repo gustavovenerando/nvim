@@ -1,64 +1,81 @@
-local lsp = require('lsp-zero').preset({})
+vim.api.nvim_create_autocmd("LspAttach", {
+	callback = function(args)
+		local bufnr = args.buf
+		local client = assert(vim.lsp.get_client_by_id(args.data.client_id), "must have valid client")
 
-lsp.on_attach(function(client, bufnr)
-    local nmap = function(keys, func, desc)
-        if desc then
-            desc = 'LSP: ' .. desc
-        end
+		local nmap = function(keys, func, desc)
+			if desc then
+				desc = "LSP: " .. desc
+			end
 
-        vim.keymap.set('n', keys, func, { buffer = bufnr, desc = desc })
-    end
+			vim.keymap.set("n", keys, func, { buffer = 0, desc = desc })
+		end
 
-    nmap('<leader>ca', vim.lsp.buf.code_action, '[C]ode [A]ction')
+		vim.opt_local.omnifunc = "v:lua.vim.lsp.omnifunc"
 
-    nmap('gd', vim.lsp.buf.definition, '[G]oto [D]efinition')
-    nmap('gr', require('telescope.builtin').lsp_references, '[G]oto [R]eferences')
-    nmap('gI', vim.lsp.buf.implementation, '[G]oto [I]mplementation')
-    nmap('<leader>D', vim.lsp.buf.type_definition, 'Type [D]efinition')
-    nmap('<leader>ds', require('telescope.builtin').lsp_document_symbols, '[D]ocument [S]ymbols')
-    nmap('<leader>ws', require('telescope.builtin').lsp_dynamic_workspace_symbols, '[W]orkspace [S]ymbols')
-    nmap('K', vim.lsp.buf.hover, 'Hover Documentation')
-    nmap('gD', vim.lsp.buf.declaration, '[G]oto [D]eclaration')
-
-    -- Create a command `:Format` local to the LSP buffer
-    vim.api.nvim_buf_create_user_command(bufnr, 'Format', function(_)
-        vim.lsp.buf.format()
-    end, { desc = 'Format current buffer with LSP' })
-
-    -- lsp.default_keymaps({buffer = bufnr})
-end)
-
--- (Optional) Configure lua language server for neovim
--- require('lspconfig').lua_ls.setup(lsp.nvim_lua_ls())
--- lsp.setup()
-
--- v.3.x
-require('mason').setup({})
-require('mason-lspconfig').setup({
-  ensure_installed = {'tsserver', 'rust_analyzer', 'clangd', 'cssls', 'eslint', 'lua_ls', 'bashls'},
-  handlers = {
-    lsp.default_setup,
-    lua_ls = function()
-      require('lspconfig').lua_ls.setup(lsp.nvim_lua_ls())
-    end,
-  }
+		nmap("<leader>ca", vim.lsp.buf.code_action, "[C]ode [A]ction")
+		nmap("gd", vim.lsp.buf.definition, "[G]oto [D]efinition")
+		nmap("gr", require("telescope.builtin").lsp_references, "[G]oto [R]eferences")
+		nmap("gI", vim.lsp.buf.implementation, "[G]oto [I]mplementation")
+		nmap("gT", vim.lsp.buf.type_definition, "Type [D]efinition")
+		nmap("gD", vim.lsp.buf.declaration, "[G]oto [D]eclaration")
+		nmap("K", vim.lsp.buf.hover, "Hover Documentation")
+		nmap("<leader>ds", require("telescope.builtin").lsp_document_symbols, "[D]ocument [S]ymbols")
+		nmap("<leader>ws", require("telescope.builtin").lsp_dynamic_workspace_symbols, "[W]orkspace [S]ymbols")
+		-- nmap('<space>cr', vim.lsp.buf.rename, 'Rename')
+	end,
 })
 
--- Override some diagnostics configs (solving update diagnostic issue)
-vim.diagnostic.config({
-    virtual_text = true,
-    update_in_insert = false
+local capabilities = vim.lsp.protocol.make_client_capabilities()
+capabilities = vim.tbl_deep_extend('force', capabilities, require('cmp_nvim_lsp').default_capabilities())
+
+local servers = {
+	jsonls = {
+		settings = {
+			json = {
+				schemas = require("schemastore").json.schemas(),
+				validate = { enable = true },
+			},
+		},
+	},
+
+	yamlls = {
+		settings = {
+			yaml = {
+				schemaStore = {
+					enable = false,
+					url = "",
+				},
+				schemas = require("schemastore").yaml.schemas(),
+			},
+		},
+	},
+}
+
+require('mason').setup()
+local ensure_installed = vim.tbl_keys(servers)
+vim.list_extend(ensure_installed, {
+    'stylua',
+    'lua_ls',
+    'bashls',
+    'eslint',
+    'tsserver',
+    'clangd',
+    'cssls',
 })
 
--- Remap to Toggle Diagnostics on current buffer
-local diagnostics_active = true
-local toggle_diagnostics = function()
-    diagnostics_active = not diagnostics_active
-    if diagnostics_active then
-        vim.diagnostic.show(nil, 0)
-    else
-        vim.diagnostic.hide(nil, 0)
-    end
-end
+require('mason-tool-installer').setup { ensure_installed = ensure_installed }
 
-vim.keymap.set('n', '<leader>dt', toggle_diagnostics, { desc = '[D]iagnostics [T]oggle'})
+require('mason-lspconfig').setup {
+    handlers = {
+        function(server_name)
+            local server = servers[server_name] or {}
+            -- This handles overriding only values explicitly passed
+            -- by the server configuration above. Useful when disabling
+            -- certain features of an LSP (for example, turning off formatting for tsserver)
+            server.capabilities = vim.tbl_deep_extend('force', {}, capabilities, server.capabilities or {})
+            require('lspconfig')[server_name].setup(server)
+        end,
+    },
+}
+
