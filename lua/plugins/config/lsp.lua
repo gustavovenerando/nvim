@@ -1,8 +1,5 @@
 vim.api.nvim_create_autocmd("LspAttach", {
 	callback = function(args)
-		local bufnr = args.buf
-		local client = assert(vim.lsp.get_client_by_id(args.data.client_id), "must have valid client")
-
 		local nmap = function(keys, func, desc)
 			if desc then
 				desc = "LSP: " .. desc
@@ -78,4 +75,14 @@ require('mason-lspconfig').setup {
         end,
     },
 }
+
+vim.lsp.handlers['textDocument/hover'] = vim.lsp.with(
+    vim.lsp.handlers.hover,
+    { border = 'rounded' }
+)
+
+vim.lsp.handlers['textDocument/signatureHelp'] = vim.lsp.with(
+    vim.lsp.handlers.signature_help,
+    { border = 'rounded' }
+)
 

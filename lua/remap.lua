@@ -79,7 +79,14 @@ vim.keymap.set(
 )
 
 -- lsp_lines off by default
-vim.diagnostic.config({ virtual_lines = false })
+vim.diagnostic.config({
+    virtual_lines = false,
+    float = {
+        header = false,
+        border = 'rounded',
+        focusable = true
+    }
+})
 
 -- Diffview
 vim.keymap.set("n", "<leader>vo", "<cmd>DiffviewOpen<CR>", { desc = "Diff[v]iew [O]pen" })

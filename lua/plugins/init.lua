@@ -57,22 +57,6 @@ return require("lazy").setup({
 	},
 
 	{
-		"hrsh7th/nvim-cmp",
-		event = "InsertEnter",
-		dependencies = {
-			"hrsh7th/cmp-nvim-lsp",
-			"hrsh7th/cmp-path",
-			"hrsh7th/cmp-buffer",
-			"hrsh7th/cmp-omni",
-			"hrsh7th/cmp-emoji",
-			"L3MON4D3/LuaSnip",
-		},
-		config = function()
-			require("plugins.config.cmp")
-		end,
-	},
-
-	{
 		"neovim/nvim-lspconfig",
 		dependencies = {
             "williamboman/mason.nvim",
@@ -88,6 +72,36 @@ return require("lazy").setup({
 			require("plugins.config.lsp")
 		end,
 	},
+
+	{
+		"hrsh7th/nvim-cmp",
+		event = "InsertEnter",
+		dependencies = {
+            {
+                "L3MON4D3/LuaSnip",
+                build = "make install_jsregexp",
+                dependencies = {
+                    {
+                        'rafamadriz/friendly-snippets',
+                        config = function()
+                            require('luasnip.loaders.from_vscode').lazy_load()
+                        end,
+                    },
+                }
+            },
+			"hrsh7th/cmp-nvim-lsp",
+			"hrsh7th/cmp-path",
+			"hrsh7th/cmp-buffer",
+			"hrsh7th/cmp-omni",
+			"hrsh7th/cmp-emoji",
+            "saadparwaiz1/cmp_luasnip",
+            "onsails/lspkind.nvim"
+		},
+		config = function()
+			require("plugins.config.cmp")
+		end,
+	},
+
 
 	{
 		"nvim-neo-tree/neo-tree.nvim",
