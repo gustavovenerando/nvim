@@ -7,9 +7,6 @@ vim.opt.relativenumber = true
 -- Show buffer search and replace
 vim.opt.inccommand = "split"
 
--- Don't have `o` add a comment
-vim.opt.formatoptions:remove "o"
-
 -- Stop screen from shifting when there are gitdiffs or error/warning symbols
 vim.opt.signcolumn = "yes:1"
 

@@ -8,9 +8,6 @@ vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
 vim.keymap.set("n", "<C-d>", "<C-d>zz")
 vim.keymap.set("n", "<C-u>", "<C-u>zz")
 
-vim.keymap.set("n", "n", "nzzzv")
-vim.keymap.set("n", "N", "Nzzzv")
-
 vim.keymap.set("x", "<leader>p", "\"_dP")
 
 --Diagnostics
@@ -28,14 +25,6 @@ vim.keymap.set("n", "<C-l>", "<C-w>l")
 vim.keymap.set("n", "<C-h>", "<C-w>h")
 vim.keymap.set("n", "<C-j>", "<C-w>j")
 vim.keymap.set("n", "<C-k>", "<C-w>k")
-
--- Create new windows
--- vim.keymap.set("n", "<leader>nw", "<C-w>v<C-w>l")
--- vim.keymap.set("n", "<leader>uw", "<C-w>s<C-w>j")
-
--- History Buffer navigation
--- vim.keymap.set("n", "<leader>p", "<cmd>bprevious<cr>")
--- vim.keymap.set("n", "<leader>n", "<cmd>bnext<cr>")
 
 -- NeoTree
 vim.keymap.set("n", "<leader>e", "<cmd>Neotree toggle<cr>")
@@ -66,9 +55,6 @@ vim.keymap.set('v', '<A-=>', vim.lsp.buf.format)
 
 -- Cltr + c that triggers InsertLeave autocommand event
 vim.keymap.set('i', '<C-c>', '<Esc>')
-
--- Highlight a word with * without moving cursor
-vim.keymap.set('n', '*', 'mP*N`P')
 
 -- Remap for lsp_lines plugin
 vim.keymap.set(
@@ -129,3 +115,37 @@ local toggle_diagnostics = function()
 end
 
 vim.keymap.set('n', '<leader>dt', toggle_diagnostics, { desc = '[D]iagnostics [T]oggle' })
+
+
+-- Dont add comments on 'o' and others keys
+vim.api.nvim_create_autocmd('BufEnter', {
+    callback = function()
+        vim.opt.formatoptions = vim.opt.formatoptions - { 'c', 'r', 'o' }
+    end,
+})
+
+-- Smart Highlight search 
+local hl_ns = vim.api.nvim_create_namespace('search')
+local hlsearch_group = vim.api.nvim_create_augroup('hlsearch_group', { clear = true })
+
+local function manage_hlsearch(char)
+    local key = vim.fn.keytrans(char)
+    local keys = { '<CR>', 'n', 'N', '*', '#', '?', '/' }
+
+    if vim.fn.mode() == 'n' then
+        if not vim.tbl_contains(keys, key) then
+            vim.cmd([[ :set nohlsearch ]])
+        elseif vim.tbl_contains(keys, key) then
+            vim.cmd([[ :set hlsearch ]])
+        end
+    end
+
+    vim.on_key(nil, hl_ns)
+end
+
+vim.api.nvim_create_autocmd('CursorMoved', {
+    group = hlsearch_group,
+    callback = function()
+        vim.on_key(manage_hlsearch, hl_ns)
+    end,
+})
