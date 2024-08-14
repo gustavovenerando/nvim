@@ -132,6 +132,7 @@ return require("lazy").setup({
 
 	{
 		"lewis6991/gitsigns.nvim",
+        commit = "805610a9393fa231f2c2b49cb521bfa413fadb3d",
 		config = function()
 			require("plugins.config.gitsigns")
 		end,
@@ -162,7 +163,7 @@ return require("lazy").setup({
 	{
 		"ThePrimeagen/harpoon",
 		dependencies = { "nvim-lua/plenary.nvim" },
-        branch = "harpoon2",
+        commit = "ccae1b9bec717ae284906b0bf83d720e59d12b91",
 		config = function()
 			require("plugins.config.harpoon")
 		end,

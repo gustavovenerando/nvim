@@ -1,22 +1,16 @@
-local harpoon = require "harpoon"
-harpoon:setup({
-    settings = {
-        save_on_toggle = true,
+require("harpoon").setup({
+    menu = {
+        width = vim.api.nvim_win_get_width(0) - 70,
+        height = vim.api.nvim_win_get_height(0) - 40,
     }
 })
 
-local toggle_opts = {
-    border = "rounded",
-    title_pos = "center",
-    ui_width_ratio = 0.50,
-}
+local mark = require("harpoon.mark")
+local ui = require("harpoon.ui")
 
-vim.keymap.set("n", "<leader>a", function()
-    harpoon:list():add()
-end)
-vim.keymap.set("n", "<Tab>", function()
-    harpoon.ui:toggle_quick_menu(harpoon:list(), toggle_opts)
-end)
+vim.keymap.set("n", "<leader>a", mark.add_file)
+vim.keymap.set("n", "<tab>", ui.toggle_quick_menu)
 
-vim.keymap.set("n", "<A-h>", function() harpoon:list():prev() end)
-vim.keymap.set("n", "<A-l>", function() harpoon:list():next() end)
+vim.keymap.set("n", "<A-l>", ui.nav_next)
+vim.keymap.set("n", "<A-h>", ui.nav_prev)
+

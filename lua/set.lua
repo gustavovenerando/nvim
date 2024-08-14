@@ -23,7 +23,7 @@ vim.opt.incsearch = true
 vim.opt.updatetime = 50
 
 vim.opt.scrolloff = 8
-vim.opt.sidescrolloff = 30
+vim.opt.sidescrolloff = 40
 
 vim.opt.wrap = false
 
