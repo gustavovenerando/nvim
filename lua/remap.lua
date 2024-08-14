@@ -149,3 +149,7 @@ vim.api.nvim_create_autocmd('CursorMoved', {
         vim.on_key(manage_hlsearch, hl_ns)
     end,
 })
+
+-- nvim-ufo
+vim.keymap.set('n', 'zR', require('ufo').openAllFolds)
+vim.keymap.set('n', 'zM', require('ufo').closeAllFolds)
