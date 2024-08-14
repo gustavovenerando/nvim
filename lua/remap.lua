@@ -153,3 +153,7 @@ vim.api.nvim_create_autocmd('CursorMoved', {
 -- nvim-ufo
 vim.keymap.set('n', 'zR', require('ufo').openAllFolds)
 vim.keymap.set('n', 'zM', require('ufo').closeAllFolds)
+
+-- Multiple Indentation
+vim.keymap.set('v', '<', '<gv')
+vim.keymap.set('v', '>', '>gv')
