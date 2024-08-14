@@ -132,7 +132,6 @@ return require("lazy").setup({
 
 	{
 		"lewis6991/gitsigns.nvim",
-        commit = "805610a9393fa231f2c2b49cb521bfa413fadb3d",
 		config = function()
 			require("plugins.config.gitsigns")
 		end,

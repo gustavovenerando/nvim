@@ -26,8 +26,7 @@ require('gitsigns').setup {
         ignore_whitespace = false,
     },
     -- current_line_blame_formatter = '<author>, <author_time:%Y-%m-%d> - <summary>',
-    current_line_blame_formatter_opts = { relative_time = true },
-    current_line_blame_formatter = function(name, blame_info, opts)
+    current_line_blame_formatter = function(name, blame_info)
         if blame_info.author:gsub("%s+", "") == name then
             blame_info.author = "You"
         end
@@ -35,11 +34,8 @@ require('gitsigns').setup {
         local text
         local date_time
 
-        if opts.relative_time then
-            date_time = require("gitsigns.util").get_relative_time(tonumber(blame_info["author_time"]))
-        else
-            date_time = os.date("%Y-%m-%d", tonumber(blame_info["author_time"]))
-        end
+        date_time = require("gitsigns.util").get_relative_time(tonumber(blame_info["author_time"]))
+        -- date_time = os.date("%Y-%m-%d", tonumber(blame_info["author_time"]))
 
         text = string.format(space .. "%s, %s • %s", blame_info.author, date_time, blame_info.summary)
 
@@ -57,9 +53,6 @@ require('gitsigns').setup {
         relative = 'cursor',
         row = 0,
         col = 1
-    },
-    yadm = {
-        enable = false
     },
     on_attach = function(bufnr)
         local gs = package.loaded.gitsigns
