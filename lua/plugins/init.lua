@@ -306,6 +306,11 @@ return require("lazy").setup({
         end,
 	},
 
+    {
+        "pmizio/typescript-tools.nvim",
+        dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
+        opts = {},
+    },
 
 	"eandrju/cellular-automaton.nvim",
 	"windwp/nvim-ts-autotag",

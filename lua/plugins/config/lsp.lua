@@ -56,7 +56,6 @@ vim.list_extend(ensure_installed, {
     'lua_ls',
     'bashls',
     'eslint',
-    'tsserver',
     'clangd',
     'cssls',
 })
