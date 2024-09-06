@@ -157,3 +157,12 @@ vim.keymap.set('n', 'zM', require('ufo').closeAllFolds)
 -- Multiple Indentation
 vim.keymap.set('v', '<', '<gv')
 vim.keymap.set('v', '>', '>gv')
+
+-- Linebreak for markdown and text files
+vim.api.nvim_create_autocmd("FileType", {
+    pattern = {"markdown", "text"},
+    callback = function()
+        vim.opt_local.textwidth = 90
+        vim.opt_local.wrap = true
+    end,
+})
