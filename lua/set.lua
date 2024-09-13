@@ -54,7 +54,7 @@ vim.o.cursorline = true
 -- Update buffer when modifications occours, like git pull or merge conflicts happens
 vim.o.autoread = true
 vim.api.nvim_create_autocmd({ "BufEnter", "CursorHold", "CursorHoldI", "FocusGained" }, {
-  command = "if mode() != 'c' | checktime | endif",
+  command = "if mode() != 'c' | silent! checktime | endif",
   pattern = { "*" },
 })
 
