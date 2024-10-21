@@ -1,4 +1,3 @@
-
 vim.opt.termguicolors = true
 
 vim.opt.number = true
@@ -39,22 +38,4 @@ vim.o.clipboard = "unnamedplus"
 
 -- Enabling cursorline
 vim.o.cursorline = true
--- vim.api.nvim_set_hl(0, "CursorLine", {bg="gray"})
--- vim.api.nvim_create_autocmd("ColorScheme", {
---     pattern = "*",
---     command = [[highlight CursorLine guibg=NONE cterm=underline]],
---     -- callback = function()
---     --     vim.api.nvim_set_hl(0, "CursorLine", {bg="gray"})
---     --     -- vim.cmd([[
---     --     --     hi CursorLine cterm=NONE ctermbg=darkred ctermfg=white guibg=darkred guifg=white
---     --     -- ]])
---     -- end
--- })
-
--- Update buffer when modifications occours, like git pull or merge conflicts happens
-vim.o.autoread = true
-vim.api.nvim_create_autocmd({ "BufEnter", "CursorHold", "CursorHoldI", "FocusGained" }, {
-  command = "if mode() != 'c' | silent! checktime | endif",
-  pattern = { "*" },
-})
 

@@ -89,7 +89,6 @@ vim.keymap.set("n", "<leader>fjo", "<cmd>CellularAutomaton make_it_rain<cr>", { 
 vim.keymap.set("n", "[s", "<cmd>BufSurfBack<cr>", { desc = "[S]urf Back"})
 vim.keymap.set("n", "]s", "<cmd>BufSurfForward<cr>", { desc = "[S]urf Forward"})
 
-
 -- Remap to Toggle Diagnostics on current buffer
 local diagnostics_active = true
 local toggle_diagnostics = function()
@@ -103,40 +102,6 @@ end
 
 vim.keymap.set('n', '<leader>dt', toggle_diagnostics, { desc = '[D]iagnostics [T]oggle' })
 
-
--- Dont add comments on 'o' and others keys
-vim.api.nvim_create_autocmd('BufEnter', {
-    callback = function()
-        vim.opt.formatoptions = vim.opt.formatoptions - { 'c', 'r', 'o' }
-    end,
-})
-
--- Smart Highlight search 
-local hl_ns = vim.api.nvim_create_namespace('search')
-local hlsearch_group = vim.api.nvim_create_augroup('hlsearch_group', { clear = true })
-
-local function manage_hlsearch(char)
-    local key = vim.fn.keytrans(char)
-    local keys = { '<CR>', 'n', 'N', '*', '#', '?', '/' }
-
-    if vim.fn.mode() == 'n' then
-        if not vim.tbl_contains(keys, key) then
-            vim.cmd([[ :set nohlsearch ]])
-        elseif vim.tbl_contains(keys, key) then
-            vim.cmd([[ :set hlsearch ]])
-        end
-    end
-
-    vim.on_key(nil, hl_ns)
-end
-
-vim.api.nvim_create_autocmd('CursorMoved', {
-    group = hlsearch_group,
-    callback = function()
-        vim.on_key(manage_hlsearch, hl_ns)
-    end,
-})
-
 -- nvim-ufo
 vim.keymap.set('n', 'zR', require('ufo').openAllFolds)
 vim.keymap.set('n', 'zM', require('ufo').closeAllFolds)
@@ -144,12 +109,3 @@ vim.keymap.set('n', 'zM', require('ufo').closeAllFolds)
 -- Multiple Indentation
 vim.keymap.set('v', '<', '<gv')
 vim.keymap.set('v', '>', '>gv')
-
--- Linebreak for markdown and text files
-vim.api.nvim_create_autocmd("FileType", {
-    pattern = {"markdown", "text"},
-    callback = function()
-        vim.opt_local.textwidth = 90
-        vim.opt_local.wrap = true
-    end,
-})
