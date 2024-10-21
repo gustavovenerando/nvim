@@ -106,6 +106,11 @@ vim.keymap.set('n', '<leader>dt', toggle_diagnostics, { desc = '[D]iagnostics [T
 vim.keymap.set('n', 'zR', require('ufo').openAllFolds)
 vim.keymap.set('n', 'zM', require('ufo').closeAllFolds)
 
--- Multiple Indentation
+-- Multiple Indentation (keep visual selection when indenting)
 vim.keymap.set('v', '<', '<gv')
 vim.keymap.set('v', '>', '>gv')
+
+-- Command line window
+-- : -> q:
+-- / -> q/
+-- ? -> q?
