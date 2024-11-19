@@ -64,7 +64,7 @@ vim.keymap.set(
     { desc = "Toggle lsp_lines" }
 )
 
--- lsp_lines off by default
+-- Diagnostics config and setting lsp_lines off by default
 vim.diagnostic.config({
     virtual_lines = false,
     float = {
@@ -114,3 +114,6 @@ vim.keymap.set('v', '>', '>gv')
 -- : -> q:
 -- / -> q/
 -- ? -> q?
+
+-- Treesitter context
+vim.keymap.set("n", "<C-m>", "<cmd>TSContextToggle<cr>", { desc = 'Toggle TS Context'})
