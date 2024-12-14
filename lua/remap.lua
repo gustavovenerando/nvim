@@ -116,4 +116,4 @@ vim.keymap.set('v', '>', '>gv')
 -- ? -> q?
 
 -- Treesitter context
-vim.keymap.set("n", "<C-m>", "<cmd>TSContextToggle<cr>", { desc = 'Toggle TS Context'})
+vim.keymap.set("n", "<C-g>", "<cmd>TSContextToggle<cr>", { desc = 'Toggle TS Context'})
