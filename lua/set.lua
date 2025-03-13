@@ -44,4 +44,3 @@ local highlight = vim.api.nvim_set_hl
 local frappe = require("catppuccin.palettes").get_palette "frappe"
 highlight(0, "TreesitterContextBottom", { underline = true, sp = frappe.overlay1 })
 highlight(0, "TreesitterContextLineNumberBottom", { underline = true, sp = frappe.overlay1 })
-
