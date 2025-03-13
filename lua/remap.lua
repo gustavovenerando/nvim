@@ -27,12 +27,12 @@ vim.keymap.set("n", "<C-j>", "<C-w>j")
 vim.keymap.set("n", "<C-k>", "<C-w>k")
 
 -- Quick fix list navigation
-vim.keymap.set("n", "<M-j>", "<cmd>cnext<CR>")
-vim.keymap.set("n", "<M-k>", "<cmd>cprev<CR>")
+vim.keymap.set("n", "<A-j>", "<cmd>cnext<CR>")
+vim.keymap.set("n", "<A-k>", "<cmd>cprev<CR>")
 
 -- Quick fix list open/close
-vim.keymap.set("n", "<M-l>", "<cmd>copen<CR>")
-vim.keymap.set("n", "<M-p>", "<cmd>cclose<CR>")
+vim.keymap.set("n", "<leader>qo", "<cmd>copen<CR>", {desc = '[Q]uickfix [O]pen'})
+vim.keymap.set("n", "<leader>qp", "<cmd>cclose<CR>", {desc = '[Q]uickfix Close'})
 
 -- NeoTree
 vim.keymap.set("n", "<leader>e", "<cmd>Neotree toggle<cr>")
