@@ -1,4 +1,3 @@
-require("telescope").load_extension("advanced_git_search")
 require("telescope").load_extension("yank_history")
 require("telescope").load_extension("undo")
 
@@ -118,10 +117,6 @@ vim.keymap.set("n", "<leader>ls", telescope_builtin.resume, {desc = '[L]ast Tele
 
 -- Quickfix History
 vim.keymap.set("n", "<leader>ql", telescope_builtin.quickfixhistory, {desc = '[Q]uickfix [L]ist History'})
-
--- advanced_git_search
-vim.keymap.set("n", "<leader>dc", require('telescope').extensions.advanced_git_search.diff_commit_file,{ desc = '[D]iff File [C]ommit' } )
-vim.keymap.set("n", "<leader>db", require('telescope').extensions.advanced_git_search.diff_branch_file, { desc = '[D]iff File [B]ranch'})
 
 -- undo
 vim.keymap.set("n", "<leader>u", require('telescope').extensions.undo.undo, { desc = "[U]ndo History"})

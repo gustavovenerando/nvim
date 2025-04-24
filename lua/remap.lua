@@ -83,9 +83,21 @@ vim.diagnostic.config({
 })
 
 -- Diffview
-vim.keymap.set("n", "<leader>vo", "<cmd>DiffviewOpen<CR>", { desc = "Diff[v]iew [O]pen" })
-vim.keymap.set("n", "<leader>vc", "<cmd>DiffviewClose<CR>", { desc = "Diff[v]iew [C]lose" })
-vim.keymap.set("n", "<leader>vh", "<cmd>DiffviewFileHistory<CR>", { desc = "Diff[v]iew File [H]istory"})
+local function get_default_branch_name()
+	local res = vim
+		.system({ 'git', 'rev-parse', '--verify', 'main' }, { capture_output = true })
+		:wait()
+	return res.code == 0 and 'main' or 'master'
+end
+vim.keymap.set("n", "<leader>vc", "<cmd>DiffviewClose<cr>", { desc = "Diff[v]iew [C]lose" })
+
+vim.keymap.set("n", "<leader>vah", "<cmd>DiffviewOpen<cr>", { desc = "Diff[v]iew [A]gainst [H]ead" })
+vim.keymap.set("n", "<leader>vam", function() vim.cmd('DiffviewOpen ' .. get_default_branch_name()) end, { desc = "Diff[v]iew [A]gainst [M]ain local branch" })
+vim.keymap.set("n", "<leader>vaM", function() vim.cmd('DiffviewOpen HEAD..origin/' .. get_default_branch_name()) end, { desc = "Diff[v]iew [A]gainst [M]ain origin branch" })
+
+vim.keymap.set("n", "<leader>vhr", "<cmd>DiffviewFileHistory<cr>", { desc = "Diff[v]iew [R]epo [H]istory"})
+vim.keymap.set("n", "<leader>vhf", "<cmd>DiffviewFileHistory --follow %<cr>", { desc = "Diff[v]iew [F]ile [H]istory"})
+vim.keymap.set("n", "<leader>vhl", "<cmd>.DiffviewFileHistory --follow<cr>", { desc = "Diff[v]iew [L]ine [H]istory"})
 
 --inc rename
 vim.keymap.set("n", "<leader>rn", ":IncRename ")

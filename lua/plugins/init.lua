@@ -199,38 +199,19 @@ return require("lazy").setup({
 		end,
 	},
 
-	"sindrets/diffview.nvim",
-
-	{
-		"aaronhallaert/advanced-git-search.nvim",
-		dependencies = {
-			"nvim-telescope/telescope.nvim",
-			"sindrets/diffview.nvim",
-		},
-		config = function()
-			-- optional: setup telescope before loading the extension
-			require("telescope").setup({
-				-- move this to the place where you call the telescope setup function
-				extensions = {
-					advanced_git_search = {
-						-- fugitive or diffview
-						diff_plugin = "diffview",
-						-- customize git in previewer
-						-- e.g. flags such as { "--no-pager" }, or { "-c", "delta.side-by-side=false" }
-						git_flags = {},
-						-- customize git diff in previewer
-						-- e.g. flags such as { "--raw" }
-						git_diff_flags = {},
-						-- Show builtin git pickers when executing "show_custom_functions" or :AdvancedGitSearch
-						show_builtin_git_pickers = false,
-						entry_default_author_or_date = "author", -- one of "author" or "date"
-					},
-				},
-			})
-
-			require("telescope").load_extension("advanced_git_search")
-		end,
-	},
+    {
+	    "sindrets/diffview.nvim",
+        config = function()
+            require("diffview").setup({
+                file_panel = {
+                    win_config = {
+                        position = "bottom",
+                        height = 15
+                    }
+                }
+            })
+        end
+    },
 
 	{
 		"folke/which-key.nvim",
