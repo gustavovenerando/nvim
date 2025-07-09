@@ -136,7 +136,7 @@ vim.keymap.set('v', '>', '>gv')
 -- ? -> q?
 
 -- Treesitter context
-vim.keymap.set("n", "<C-g>", "<cmd>TSContextToggle<cr>", { desc = 'Toggle TS Context'})
+vim.keymap.set("n", "<C-g>", "<cmd>TSContext toggle<cr>", { desc = 'Toggle TS Context'})
 
 -- Copy to clipboard
 function copyToClipboard(pattern)
