@@ -37,8 +37,6 @@ return require("lazy").setup({
 		end,
 	},
 
-	{ "nvim-tree/nvim-web-devicons", event = "VeryLazy" },
-
 	{
 		"nvim-treesitter/nvim-treesitter",
 		event = "VeryLazy",
