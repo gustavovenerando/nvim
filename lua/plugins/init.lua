@@ -297,4 +297,19 @@ return require("lazy").setup({
 	"eandrju/cellular-automaton.nvim",
 	"windwp/nvim-ts-autotag",
 	"ton/vim-bufsurf",
+
+    {
+        "Diogo-ss/42-header.nvim",
+        cmd = { "Stdheader" },
+        keys = { "<F1>" },
+        opts = {
+            default_map = true, -- Default mapping <F1> in normal mode.
+            auto_update = false, -- Update header when saving.
+            -- user = "username", -- Your user.
+            -- mail = "your@email.com", -- Your mail.
+        },
+        config = function(_, opts)
+            require("42header").setup(opts)
+        end,
+    },
 })
