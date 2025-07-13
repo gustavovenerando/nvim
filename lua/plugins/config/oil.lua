@@ -7,7 +7,9 @@ require("oil").setup {
         autosave_changes = true
     },
     keymaps = {
-        ["<C-[>"] = "actions.close",
+        -- Close on ESQ
+        -- ["<C-[>"] = "actions.close",
+        ["<leader>c"] = "actions.close",
     }
 }
 
