@@ -300,10 +300,8 @@ return require("lazy").setup({
 
     {
         "Diogo-ss/42-header.nvim",
-        cmd = { "Stdheader" },
-        keys = { "<F3>" },
         opts = {
-            default_map = true,  -- Default mapping <F1> in normal mode.
+            default_map = false,  -- Default mapping <F1> in normal mode.
             auto_update = false, -- Update header when saving.
             -- user = "username", -- Your user.
             -- mail = "your@email.com", -- Your mail.

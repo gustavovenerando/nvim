@@ -138,7 +138,7 @@ vim.keymap.set('v', '>', '>gv')
 -- Treesitter context
 vim.keymap.set("n", "<C-g>", "<cmd>TSContext toggle<cr>", { desc = 'Toggle TS Context'})
 
--- Copy to clipboard
+-- Copy path to clipboard
 function copyToClipboard(pattern)
     local path = vim.fn.expand(pattern)
     vim.fn.setreg('+', path) -- write to clippoard
@@ -149,3 +149,6 @@ vim.keymap.set('n', '<leader>yr', function() copyToClipboard('%:p:.') end, { nor
 vim.keymap.set('n', '<leader>ya', function() copyToClipboard('%:p') end, { noremap = true, silent = true , desc = '[Y]ank [A]bsolute Path' })
 vim.keymap.set('n', '<leader>yd', function() copyToClipboard('%:h') end, { noremap = true, silent = true, desc = '[Y]ank [D]irectory Name'  })
 vim.keymap.set('n', '<leader>yf', function() copyToClipboard('%:t') end, { noremap = true, silent = true , desc = '[Y]ank [F]ile Name' })
+
+-- Header 42
+vim.keymap.set("n", "<leader>hf", "<cmd>Stdheader<cr>", { desc = '[H]eader [F]orty Two'})
