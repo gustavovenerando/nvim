@@ -47,6 +47,17 @@ vim.api.nvim_create_autocmd({ "BufEnter", "CursorHold", "CursorHoldI", "FocusGai
   pattern = { "*" },
 })
 
+-- 42 file config to c, cpp and make files
+vim.api.nvim_create_autocmd({"FileType"}, {
+    pattern = {"c", "cpp", "make"},
+    callback = function()
+        vim.opt_local.tabstop = 8
+        vim.opt_local.softtabstop = 8
+        vim.opt_local.shiftwidth = 8
+        vim.opt_local.expandtab = false
+    end,
+})
+
 -- CursorLine autocmd
 -- vim.api.nvim_set_hl(0, "CursorLine", {bg="gray"})
 -- vim.api.nvim_create_autocmd("ColorScheme", {
