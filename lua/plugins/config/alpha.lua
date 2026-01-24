@@ -666,6 +666,7 @@ local fortune_list = {
     {"Defeat is a state of mind; no one is ever defeated until defeat has been accepted as a reality.", "", "- Bruce Lee"},
     {"I fear not the man who has practiced 10,000 kicks once, but I fear the man who had practiced one kick 10,000 times.", "", "- Bruce Lee"},
     {"If you spend too much time thinking about a thing, you'll never get it done.", "", "- Bruce Lee"},
+    {"Anxiety is the entry fee for growth."},
 }
 
 local fortune = function(opts)
