@@ -18,7 +18,11 @@ vim.api.nvim_create_autocmd("LspAttach", {
 		nmap("gI", vim.lsp.buf.implementation, "[G]oto [I]mplementation")
 		nmap("gT", vim.lsp.buf.type_definition, "Type [D]efinition")
 		nmap("gD", vim.lsp.buf.declaration, "[G]oto [D]eclaration")
-		nmap("K", vim.lsp.buf.hover, "Hover Documentation")
+		nmap("K", function ()
+            vim.lsp.buf.hover({ border = "rounded" })
+        end,
+            "Hover Documentation"
+        )
 		nmap("<leader>ds", telescope.lsp_document_symbols, "[D]ocument [S]ymbols")
 		nmap("<leader>ws", telescope.lsp_dynamic_workspace_symbols, "[W]orkspace [S]ymbols")
 		-- nmap('<space>cr', vim.lsp.buf.rename, 'Rename')

@@ -1,7 +1,8 @@
-require("telescope").load_extension("yank_history")
+-- require("telescope").load_extension("yank_history")
 require("telescope").load_extension("undo")
 
 local telescope_builtin = require('telescope.builtin');
+local utils = require('telescope.utils');
 
 vim.keymap.set('n', '<leader>?', telescope_builtin.oldfiles, { desc = '[?] Find recently opened files' })
 vim.keymap.set('n', '<leader><space>', telescope_builtin.buffers, { desc = '[ ] Find existing buffers' })
@@ -27,8 +28,8 @@ vim.keymap.set('n', '<leader>sd', telescope_builtin.diagnostics, { desc = '[S]ea
 vim.keymap.set('n', '<leader>sf', telescope_builtin.git_files, { desc = '[S]earch Git [F]iles' });
 
 vim.keymap.set('n', '<leader>sn', function()
-        telescope_builtin.find_files { cwd = vim.fn.stdpath 'config' }
-      end, { desc = '[S]earch [N]eovim files' })
+    telescope_builtin.find_files { cwd = vim.fn.stdpath 'config' }
+end, { desc = '[S]earch [N]eovim files' })
 
 -- Change buffer layout and adding map to allow delete buffer with telescope window open
 local actions = require("telescope.actions")
@@ -120,3 +121,18 @@ vim.keymap.set("n", "<leader>ql", telescope_builtin.quickfixhistory, {desc = '[Q
 
 -- undo
 vim.keymap.set("n", "<leader>u", require('telescope').extensions.undo.undo, { desc = "[U]ndo History"})
+
+-- Current buffer search
+local function buffer_dir()
+    return utils.buffer_dir()
+end
+
+vim.keymap.set('n', '<leader>csf',
+    function() telescope_builtin.find_files({ cwd = buffer_dir() }) end,
+    { desc = '[C]urrent Buffer [S]earch [F]iles' }
+);
+
+vim.keymap.set('n', '<leader>csg',
+    function() telescope_builtin.live_grep({ cwd = buffer_dir() }) end,
+    { desc = '[C]urrent Buffer [S]earch by [G]rep' }
+);
