@@ -51,6 +51,9 @@ If Lazy plugins require a clean restart, you can clear all Neovim caches with:
 ```bash
 rm -rf ~/.local/state/nvim/ ~/.local/share/nvim/ ~/.cache/nvim/ ~/.config/nvim/lazy-lock.json
 ```
+>Deleting `lazy-lock.json` removes version pinning.
+>After this, plugins will update to the latest versions on the next install/sync.
+
 
 ## Local environmental variables (Optional)
 📍**Path:**
