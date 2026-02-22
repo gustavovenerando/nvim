@@ -1,6 +1,10 @@
 require("catppuccin").setup({
     flavour = "frappe",
     transparent_background = true,
+    float = {
+        transparent = true,
+        solid = false,
+    },
     integrations = {
         leap = true,
         mason = true,
@@ -10,6 +14,7 @@ require("catppuccin").setup({
         harpoon = true,
         dap = { enabled = true, enable_ui = true },
         alpha = true,
+        telescope = true,
         -- indent_blankline = { enabled = true, colored_indent_levels = true },
     },
     highlight_overrides = {
@@ -18,8 +23,11 @@ require("catppuccin").setup({
                 LineNr = { fg = colors.overlay1 },
                 CursorLineNr = { fg = colors.lavander },
                 CursorLine = { bg = colors.crust },
+
+                TelescopeSelection = { bg = colors.none, style = { "bold" } },
+                TelescopeSelectionCaret = { fg = colors.mauve, bg = colors.none },
             }
-        end, -- Same for each flavour
+        end,
     }
 })
 
