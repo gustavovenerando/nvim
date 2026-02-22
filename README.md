@@ -6,10 +6,44 @@
   ```bash
   sudo npm i -g typescript typescript-language-server
   ```
+- Sdkman for Java setup:
+```bash
+curl -s "https://get.sdkman.io" | bash
+source "$HOME/.sdkman/bin/sdkman-init.sh"
+
+sdk list java
+sdk install <some_java_version>
+sdk default <some_java_version>
+```
 - Prerequisites:
   ```bash
   sudo apt-get install ninja-build gettext cmake unzip curl ripgrep xclip
   ```
+
+## ☕ Java Setup
+Set the runtimes in nvim-java config file:
+
+```lua
+vim.lsp.config("jdtls", {
+  settings = {
+    java = {
+      configuration = {
+        runtimes = {
+          {
+            name = "JavaSE-11",
+            path = vim.fn.expand("~/.sdkman/candidates/java/<your-11-folder>"),
+            default = true,
+          },
+          {
+            name = "JavaSE-21",
+            path = vim.fn.expand("~/.sdkman/candidates/java/<your-21-folder>"),
+          },
+        },
+      },
+    },
+  },
+})
+```
 
 ## 🔄 When Lazy Plugins Need a Restart
 If Lazy plugins require a clean restart, you can clear all Neovim caches with:

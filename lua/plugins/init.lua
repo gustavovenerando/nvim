@@ -315,4 +315,12 @@ return require("lazy").setup({
             require("42header").setup(opts)
         end,
     },
+
+    {
+        'nvim-java/nvim-java',
+        ft = { 'java' },
+        config = function()
+            require("plugins.config.java")
+        end,
+    },
 })
