@@ -4,13 +4,15 @@ require("oil").setup {
         show_hidden = true,
     },
     lsp_file_methods = {
+        enabled = true,
+        timeout_ms = 2000,
         autosave_changes = true
     },
     keymaps = {
         -- Close on ESQ
         -- ["<C-[>"] = "actions.close",
         ["<leader>c"] = "actions.close",
-    }
+    },
 }
 
 -- Open parent directory in current window

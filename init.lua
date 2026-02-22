@@ -1,6 +1,5 @@
 require("plugins.init")
 require("set")
 require("remap")
-require("buffers")
 require("autocmd")
 pcall(require, "local")
