@@ -1,20 +1,20 @@
-require('java').setup({
-    jdk = {
-        auto_install = false,
-        version = '21'
-    }
-})
-
-vim.lsp.enable("jdtls")
+local function noop() end
 
 vim.lsp.config("jdtls", {
+    handlers = {
+        ["$/progress"] = noop,
+        ["language/progressReport"] = noop,
+        ["language/status"] = noop,
+        ["window/showMessage"] = noop,
+        ["window/logMessage"] = noop,
+    },
     settings = {
         java = {
             configuration = {
                 runtimes = {
                     {
-                        name = "JavaSE-11",
-                        path = vim.fn.expand("~/.sdkman/candidates/java/11.0.30-tem"),
+                        name = "JavaSE-17",
+                        path = vim.fn.expand("~/.sdkman/candidates/java/17.0.18-tem"),
                         default = true,
                     },
                     {
@@ -26,3 +26,12 @@ vim.lsp.config("jdtls", {
         },
     },
 })
+
+require('java').setup({
+    jdk = {
+        auto_install = false,
+        version = '21'
+    }
+})
+
+vim.lsp.enable("jdtls")

@@ -12,8 +12,8 @@
   source "$HOME/.sdkman/bin/sdkman-init.sh"
 
   sdk list java
-  sdk install <some_java_version>
-  sdk default <some_java_version>
+  sdk install java <some_java_version>
+  sdk default java <some_java_version>
   ```
 - Prerequisites:
   ```bash
@@ -30,8 +30,8 @@ vim.lsp.config("jdtls", {
       configuration = {
         runtimes = {
           {
-            name = "JavaSE-11",
-            path = vim.fn.expand("~/.sdkman/candidates/java/<your-11-folder>"),
+            name = "JavaSE-17",
+            path = vim.fn.expand("~/.sdkman/candidates/java/<your-17-folder>"),
             default = true,
           },
           {
