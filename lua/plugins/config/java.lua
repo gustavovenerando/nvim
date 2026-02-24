@@ -1,6 +1,13 @@
+local java17 = vim.fn.expand("~/.sdkman/candidates/java/17.0.18-tem")
+local java21 = vim.fn.expand("~/.sdkman/candidates/java/21.0.10-tem")
+
 local function noop() end
 
 vim.lsp.config("jdtls", {
+    cmd_env = {
+        JAVA_HOME = java21,
+        PATH = java21 .. "/bin:" .. vim.env.PATH,
+    },
     handlers = {
         ["$/progress"] = noop,
         ["language/progressReport"] = noop,
@@ -12,15 +19,8 @@ vim.lsp.config("jdtls", {
         java = {
             configuration = {
                 runtimes = {
-                    {
-                        name = "JavaSE-17",
-                        path = vim.fn.expand("~/.sdkman/candidates/java/17.0.18-tem"),
-                        default = true,
-                    },
-                    {
-                        name = "JavaSE-21",
-                        path = vim.fn.expand("~/.sdkman/candidates/java/21.0.10-tem"),
-                    },
+                    { name = "JavaSE-17", path = java17, default = true, },
+                    { name = "JavaSE-21", path = java21, },
                 },
             },
         },

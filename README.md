@@ -21,27 +21,36 @@
   ```
 
 ## ☕ Java Setup
-Set the runtimes in nvim-java config file:
+This setup keeps your **system/terminal Java on 17**, while forcing **JDTLS to run on Java 21** (required by nvim-java / jdtls).  
+JDTLS will treat **Java 17 as the default project runtime** for compilation/debug.
 
+### SDKMAN (terminal default)
+```bash
+sdk default java 17.0.18-tem
+```
+
+### Configuration
 ```lua
+// lua/plugins/config/java.lua
+local java17 = vim.fn.expand("~/.sdkman/candidates/java/17.0.18-tem")
+local java21 = vim.fn.expand("~/.sdkman/candidates/java/21.0.10-tem")
+
 vim.lsp.config("jdtls", {
-  settings = {
-    java = {
-      configuration = {
-        runtimes = {
-          {
-            name = "JavaSE-17",
-            path = vim.fn.expand("~/.sdkman/candidates/java/<your-17-folder>"),
-            default = true,
-          },
-          {
-            name = "JavaSE-21",
-            path = vim.fn.expand("~/.sdkman/candidates/java/<your-21-folder>"),
-          },
-        },
-      },
+    ...,
+    cmd_env = {
+        JAVA_HOME = java21,
+        PATH = java21 .. "/bin:" .. vim.env.PATH,
     },
-  },
+    settings = {
+        java = {
+            configuration = {
+                runtimes = {
+                    { name = "JavaSE-17", path = java17, default = true, },
+                    { name = "JavaSE-21", path = java21, },
+                },
+            },
+        },
+    },
 })
 ```
 
