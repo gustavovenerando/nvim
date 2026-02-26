@@ -8,7 +8,7 @@ vim.opt.inccommand = "split"
 
 -- Stop screen from shifting when there are gitdiffs or error/warning symbols
 vim.opt.signcolumn = "yes:1"
-vim.opt.numberwidth = 1;
+vim.opt.numberwidth = 1
 
 vim.opt.tabstop = 4
 vim.opt.softtabstop = 4
@@ -45,3 +45,18 @@ local highlight = vim.api.nvim_set_hl
 local frappe = require("catppuccin.palettes").get_palette "frappe"
 highlight(0, "TreesitterContextBottom", { underline = true, sp = frappe.overlay1 })
 highlight(0, "TreesitterContextLineNumberBottom", { underline = true, sp = frappe.overlay1 })
+
+-- Silence xclip stderr so Neovim won't echo "target STRING not available"
+vim.g.clipboard = {
+    name = "xclip-silent",
+    copy = {
+        ["+"] = { "xclip", "-quiet", "-i", "-selection", "clipboard" },
+        ["*"] = { "xclip", "-quiet", "-i", "-selection", "primary" },
+    },
+    paste = {
+        -- Redirect stderr -> /dev/null (prevents cmdline messages)
+        ["+"] = { "bash", "-lc", "xclip -o -selection clipboard 2>/dev/null || true" },
+        ["*"] = { "bash", "-lc", "xclip -o -selection primary  2>/dev/null || true" },
+    },
+    cache_enabled = 1,
+}
