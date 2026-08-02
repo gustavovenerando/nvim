@@ -152,3 +152,16 @@ vim.keymap.set('n', '<leader>yf', function() copyToClipboard('%:t') end, { norem
 
 -- Header 42
 vim.keymap.set("n", "<leader>hf", "<cmd>Stdheader<cr>", { desc = '[H]eader [F]orty Two'})
+
+-- Code action
+vim.keymap.set("x", "<leader>mf", function()
+    vim.lsp.buf.code_action({
+        filter = function(action)
+            return action.title == "Move to file"
+        end,
+        apply = true,
+    })
+end, {
+    desc = "[TypeScript] Move selection to existing file",
+})
+
