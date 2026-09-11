@@ -1,5 +1,5 @@
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
-if not vim.loop.fs_stat(lazypath) then
+if not vim.uv.fs_stat(lazypath) then
 	vim.fn.system({
 		"git",
 		"clone",
@@ -39,11 +39,14 @@ return require("lazy").setup({
 
     {
         "nvim-treesitter/nvim-treesitter",
-        branch = "master",
-        event = false,
+        branch = "main",
+        lazy = false,
         build = ":TSUpdate",
         dependencies = {
-            "nvim-treesitter/nvim-treesitter-textobjects",
+            {
+                "nvim-treesitter/nvim-treesitter-textobjects",
+                branch = "main",
+            },
             "nvim-treesitter/nvim-treesitter-context",
         },
         config = function()
@@ -61,12 +64,27 @@ return require("lazy").setup({
     {
         "neovim/nvim-lspconfig",
         dependencies = {
-            "williamboman/mason.nvim",
-            "williamboman/mason-lspconfig.nvim",
+            "mason-org/mason.nvim",
+            "mason-org/mason-lspconfig.nvim",
             "WhoIsSethDaniel/mason-tool-installer.nvim",
-
-            { "j-hui/fidget.nvim", opts = {} },
-
+            {
+                "j-hui/fidget.nvim",
+                opts = {
+                    notification = {
+                        window = {
+                            border = "rounded",
+                            winblend = 0,
+                            x_padding = 1,
+                            y_padding = 1,
+                        },
+                    },
+                    progress = {
+                        display = {
+                            done_ttl = 1,
+                        },
+                    },
+                },
+            },
             -- Schema information
             "b0o/SchemaStore.nvim",
         },

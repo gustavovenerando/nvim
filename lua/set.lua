@@ -6,6 +6,8 @@ vim.opt.relativenumber = true
 -- Show buffer search and replace
 vim.opt.inccommand = "split"
 
+vim.o.winborder = "rounded"
+
 -- Stop screen from shifting when there are gitdiffs or error/warning symbols
 vim.opt.signcolumn = "yes:1"
 vim.opt.numberwidth = 1
